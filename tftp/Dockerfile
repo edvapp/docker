@@ -12,10 +12,10 @@ RUN apt-get update && apt-get install -y tftpd-hpa
 VOLUME ["/var/lib/tftpboot"]
 
 # Create the tftpboot data directory
-RUN rm -R /var/lib/tftpboot cd /var/lib/ && git clone https://github.com/edvapp/tftpboot.git
+RUN cd /var/lib/ && git clone https://github.com/edvapp/tftpboot.git
 
 # Expose port #69 from the container to the host
 EXPOSE 69
 
 # Set /usr/bin/mongod as the dockerized entry-point application
-ENTRYPOINT ["/var/lib/tftpboot"]
+ENTRYPOINT ["/var/lib/tftpboot/start.sh"]
