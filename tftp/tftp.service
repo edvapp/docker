@@ -1,0 +1,12 @@
+[Unit]
+Description=tftp
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill tftp_container
+ExecStartPre=-/usr/bin/docker rm tftp_container
+ExecStartPre=/usr/bin/docker pull tftp_container
+ExecStart=/usr/bin/docker run --name tftp_container tftp_image
+ExecStop=/usr/bin/docker stop tftp_container
