@@ -8,6 +8,9 @@ MAINTAINER Reinhard Fink reinhard.fink@tsn.at
 # Update apt-get sources AND install tftp
 RUN apt-get update && apt-get install -y tftpd-hpa
 
+# AND install git
+RUN apt-get install -y git
+
 # create Volume for holding data
 VOLUME ["/var/lib/tftpboot"]
 
@@ -17,5 +20,5 @@ RUN cd /var/lib/ && git clone https://github.com/edvapp/tftpboot.git
 # Expose port #69 from the container to the host
 EXPOSE 69
 
-# Set /usr/bin/mongod as the dockerized entry-point application
+# Set /var/lib/tftpboot/start.sh as the dockerized entry-point application
 ENTRYPOINT ["/var/lib/tftpboot/start.sh"]
