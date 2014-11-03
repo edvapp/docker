@@ -1,3 +1,0 @@
-# Format: sudo docker build --tag/-t <user-name>/<repository> .
-# Example:
-$ sudo docker build --tag fink/tftp_image 
