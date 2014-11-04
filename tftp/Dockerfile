@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y tftpd-hpa
 ADD start.sh /bin/start.sh
 
 # Expose port #69 from the container to the host
-EXPOSE 69
+EXPOSE 69/udp
 
 # start with /bin/start.sh
 CMD ["/bin/start.sh"]
