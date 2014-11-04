@@ -1,0 +1,12 @@
+[Unit]
+Description=mc for coreos
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill mc
+ExecStartPre=-/usr/bin/docker rm mc
+ExecStartPre=/usr/bin/docker pull mc
+ExecStart=/usr/bin/docker run -i -t -v /:/coreos --name mc edvapp/basic /bin/bash
+ExecStop=/usr/bin/docker stop mc
