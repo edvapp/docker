@@ -5,8 +5,8 @@ Requires=docker.service
 
 [Service]
 TimeoutStartSec=0
-ExecStartPre=-/usr/bin/docker kill tftp_container
-ExecStartPre=-/usr/bin/docker rm tftp_container
-ExecStartPre=/usr/bin/docker pull tftp_container
-ExecStart=/usr/bin/docker run --name tftp_container tftp_image
-ExecStop=/usr/bin/docker stop tftp_container
+ExecStartPre=-/usr/bin/docker kill tftp
+ExecStartPre=-/usr/bin/docker rm tftp
+ExecStartPre=/usr/bin/docker pull edvapp/tftp:1.0 
+ExecStart=/usr/bin/docker run -v /data/var/lib/tftpboot:/var/lib/tftpboot -p 69:69/udp --name tftp edvapp/tftp:1.0 
+ExecStop=/usr/bin/docker stop tftp
